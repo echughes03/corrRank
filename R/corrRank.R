@@ -4,21 +4,23 @@
 #' @param outcome the outcome
 #' @returns ranking
 #' @examples
-#' corrRank(list("BMI", "Blood pressure", "Age"), Cholesterol)
+#' corrRank(list(BMI, Age, Blood_pressure), Obesity)
 #' @export
 
 corrRank = function(predictors, outcome){
-  # message if different dimensions
-  ranking = data.frame("Predictor", "Correlation", "Significance")
+  ranking = data.frame(matrix(ncol=3, nrow=0))
+  colnames(ranking) = c("Predictor", "Correlation", "Significance")
   stopifnot("Outcome variable must be numeric" = is.numeric(outcome))
-  for (predictor in predictors){
+
+  for (i in seq_along(predictors)){
+    predictor = predictors[[i]]
     stopifnot("Predictors and outcome must be equal length" = length(predictor)==length(outcome))
     stopifnot("Predictors must be numeric" = is.numeric(predictor))
 
-    rbind(ranking, data.frame(Predictor = predictor,
-                              Correlation = cor(predictor, outcome, na.rm=TRUE),
-                              Significance = ifelse(cor.test(predictor, outcome)$p.value < 0.05, "Yes", "No")))
+    ranking = rbind(ranking, data.frame(Predictor = names(predictors)[i],
+                                        Correlation = cor(predictor, outcome),
+                                        Significance = ifelse(cor.test(predictor, outcome)$p.value < 0.05, "Yes", "No")))
   }
-  ranking = ranking %>% arrange(abs(Correlation))
+  ranking = ranking %>% arrange(desc(abs(Correlation)))
   return(ranking)
 }
