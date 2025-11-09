@@ -8,11 +8,16 @@
 #' @export
 
 corrRank = function(predictors, outcome){
-  # deal with missing values
   # message if different dimensions
-  ranking = data.frame("Predictor", "Correlation")
+  ranking = data.frame("Predictor", "Correlation", "Significance")
+  stopifnot("Outcome variable must be numeric" = is.numeric(outcome))
   for (predictor in predictors){
-    rbind(ranking, data.frame(Predictor = predictor, Correlation = cor(predictor, outcome)))
+    stopifnot("Predictors and outcome must be equal length" = length(predictor)==length(outcome),
+              "Predictors must be numeric" = is.numeric(predictor))
+
+    rbind(ranking, data.frame(Predictor = predictor,
+                              Correlation = cor(predictor, outcome, na.rm=TRUE),
+                              Significance = ifelse(cor.test(predictor, outcome)$p.value < 0.05, "Yes", "No")))
   }
   ranking = ranking %>% arrange(abs(Correlation))
   return(ranking)
