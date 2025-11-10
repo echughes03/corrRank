@@ -18,5 +18,5 @@ ranking
 a function that ranks a list of continuous predictor variables by their correlation with a continuous outcome.
 }
 \examples{
-corrRank(list("BMI", "Blood pressure", "Age"), Cholesterol)
+corrRank(list(BMI, Age, Blood_pressure), Obesity)
 }
