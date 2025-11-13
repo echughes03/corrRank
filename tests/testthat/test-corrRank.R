@@ -22,3 +22,8 @@ test_that("three predictor ranking works", {
   output = corrRank(list(Work_hrs = cities$avg_hours_worked_annual, Sunshine=cities$sunshine_hours, "Take out"=cities$num_take_out_places), cities$happiness_level)
   expect_equal(output$Correlation[1] <= output$Correlation[2] & output$Correlation[2]<= output$Correlation[3], TRUE)
 })
+
+test_that("association label works", {
+  output = corrRank(list(Work_hrs = cities$avg_hours_worked_annual, Sunshine=cities$sunshine_hours, "Take out"=cities$num_take_out_places), cities$happiness_level)
+  expect_equal(output$Association[1], "Weak negative")
+})
