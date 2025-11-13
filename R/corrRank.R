@@ -18,8 +18,17 @@ corrRank = function(predictors, outcome){
     stopifnot("Predictors must be numeric" = is.numeric(predictor))
 
     ranking = rbind(ranking, data.frame(Predictor = names(predictors)[i],
-                                        Correlation = cor(predictor, outcome),
-                                        Significance = ifelse(cor.test(predictor, outcome)$p.value < 0.05, "Yes", "No")))
+                                        Correlation = round(cor(predictor, outcome, use = "complete.obs"),2),
+                                        Significance = ifelse(cor.test(predictor, outcome)$p.value < 0.05, "Yes", "No"),
+                                        "Linear Association" = case_when(Correlation == -1 ~ "Perfect negative",
+                                                                Correlation == 1 ~ "Perfect positive",
+                                                                Correlation == 0 ~ "None",
+                                                                Correlation >= 0.8 & Correlation < 1 ~ "Strong positive",
+                                                                Correlation >= 0.6 & Correlation < 0.8 ~ "Moderate positive",
+                                                                Correlation > 0 & Correlation < 0.6 ~ "Weak positive",
+                                                                Correlation < 0 & Correlation > -0.6 ~ "Weak negative",
+                                                                Correlation <= -0.6 & Correlation > -0.8 ~ "Moderate negative",
+                                                                Correlation > -1 & Correlation <= -0.8 ~ "Strong negative")))
   }
   ranking = ranking %>% arrange(desc(abs(Correlation)))
   return(ranking)
