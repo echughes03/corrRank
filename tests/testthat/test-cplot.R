@@ -5,14 +5,17 @@ test_that("(1) predictor(s) and outcome are of the same length", {
 })
 
 test_that("(2) cplot returns a list", {
+  exposures <- list(cities$life_expectancy, cities$happiness_level)
   expect_equal(class(list()), class(cplot(exposures, cities$obesity_level)))
 })
 
 test_that("(3) cplot indexed outputs are ggplot objects", {
+  exposures <- list(cities$life_expectancy, cities$happiness_level)
   expect_equal(c("gg","ggplot"), class(cplot(exposures, cities$obesity_level)$`Exposure 1`))
 })
 
 test_that("(4) number of plots correspond to number of predictors listed", {
+  exposures <- list(cities$life_expectancy, cities$happiness_level)
   expect_equal(length(exposures), length(cplot(exposures, cities$obesity_level)))
 })
 

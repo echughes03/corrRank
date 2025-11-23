@@ -1,5 +1,5 @@
 #' @title correlation plot
-#' @description a function that prints bivariate plots of outcome against exposure (from a list of predictors in order)
+#' @description a function that prints bivariate plots of outcome against exposure (from a list of predictors in the order specified)
 #' @param outcome numeric outcome variable, vector
 #' @param predictors list of numeric predictor(s), vectors
 #' @returns list of ggplot2 output(s). List can be indexed to output specific plot(s)
@@ -8,6 +8,9 @@
 #' plot_list <- cplot(exposures, cities$obesity_level)
 #' plot_list$`Exposure 1`
 #' plot_list$`Exposure 2`
+#' @import dplyr
+#' @import ggplot2
+#' @import glue
 #' @export
 
 cplot <- function(predictors, outcome) {
@@ -20,9 +23,7 @@ cplot <- function(predictors, outcome) {
 
     df <- data.frame(exposure = predictor, response = outcome)
 
-    corr_plot <- ggplot(data = df,
-           aes(x = exposure,
-               y = response)) +
+    corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
       geom_point() +
       geom_smooth(method = "lm", se = F) +
       annotate(geom = "text",
