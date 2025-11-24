@@ -15,7 +15,7 @@ cplot(predictors, outcome)
 list of ggplot2 output(s). List can be indexed to output specific plot(s)
 }
 \description{
-a function that prints bivariate plots of outcome against exposure (from a list of predictors in order)
+a function that prints bivariate plots of outcome against exposure (from a list of predictors in the order specified)
 }
 \examples{
 exposures <- list(cities$life_expectancy, cities$happiness_level)

@@ -2,3 +2,6 @@
 
 export(corrRank)
 export(cplot)
+import(dplyr)
+import(ggplot2)
+import(glue)
