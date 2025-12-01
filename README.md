@@ -28,6 +28,6 @@ The _cplot_ function creates a clean, simple scatterplot of a given predictor-ou
 ```R
 install.packages("devtools") 
 library(devtools)
-devtools::install_github("echughes03/corrrank")
-library(corrrank)
+devtools::install_github("echughes03/corrRank")
+library(corrRank)
 ```
