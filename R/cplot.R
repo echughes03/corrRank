@@ -64,12 +64,7 @@ cplot <- function(predictors, outcome, r = T, line = T) {
       corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
         geom_point() +
         geom_smooth(method = "lm", se = F) +
-        annotate(geom = "text",
-                 x = min(predictor, na.rm = T),
-                 y = max(outcome, na.rm = T),
-                 hjust = 0,
-                 vjust = 1,
-                 label = glue("r = {round(correlation,3)}")) +
+        labs(subtitle = glue("r = {round(correlation,3)}")) +
         labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
              x = glue("Exposure {i}"),
              y = glue("{deparse(substitute(outcome))}")) +
@@ -81,17 +76,6 @@ cplot <- function(predictors, outcome, r = T, line = T) {
   }
   return(plots)
 }
-
-
-
-# annotate(geom = "text",
-#          x = min(predictor, na.rm = T),
-#          y = max(outcome, na.rm = T),
-#          hjust = 0,
-#          vjust = 1,
-#          label = glue("r = {round(correlation,3)}"))
-
-
 
 
 
