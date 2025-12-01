@@ -12,7 +12,7 @@
 #'
 #' # relabeling and excluding line of best fit
 #' plot_list <- cplot(exposures, cities$happiness_level, line = F)
-#' plot_list$`Exposure 3` + labs(x = "Annual Hours of Sunshine", y = "Happiness Level", title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
+#' plot_list$`Exposure 3` + ggplot2::labs(x = "Annual Hours of Sunshine", y = "Happiness Level", title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
 #' @import dplyr
 #' @import ggplot2
 #' @import glue

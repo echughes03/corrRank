@@ -7,16 +7,21 @@
 corrRank(predictors, outcome)
 }
 \arguments{
-\item{predictors}{a list of predictors}
+\item{predictors}{a list of named predictors}
 
-\item{outcome}{the outcome}
+\item{outcome}{the outcome variable}
 }
 \value{
-ranking
+a ranking of linear associations by strength, and additional information
 }
 \description{
 a function that ranks a list of continuous predictor variables by their correlation with a continuous outcome.
 }
 \examples{
-corrRank(list(BMI, Age, Blood_pressure), Obesity)
+corrRank(list(Work = cities$avg_hours_worked_annual,
+Pollution = cities$pollution_index, Sunshine = cities$sunshine_hours),
+cities$happiness_level)
+
+corrRank(list(Work = cities$avg_hours_worked_annual),
+cities$sunshine_hours)
 }
