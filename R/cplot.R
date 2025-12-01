@@ -4,16 +4,17 @@
 #' @param predictors list of numeric predictor(s), vectors
 #' @returns list of ggplot2 output(s). List can be indexed to output specific plot(s)
 #' @examples
-#' exposures <- list(cities$life_expectancy, cities$happiness_level)
-#' plot_list <- cplot(exposures, cities$obesity_level)
+#' exposures <- list(Work = cities$avg_hours_worked_annual, Pollution = cities$pollution_index, Sunshine = cities$sunshine_hours)
+#' plot_list <- cplot(exposures, cities$happiness_level)
 #' plot_list$`Exposure 1`
 #' plot_list$`Exposure 2`
+#' plot_list$`Exposure 3`
 #' @import dplyr
 #' @import ggplot2
 #' @import glue
 #' @export
 
-cplot <- function(predictors, outcome) {
+cplot <- function(predictors, outcome, r = T, line = T) {
 
   plots <- list()
 
@@ -23,23 +24,66 @@ cplot <- function(predictors, outcome) {
 
     df <- data.frame(exposure = predictor, response = outcome)
 
-    corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
-      geom_point() +
-      geom_smooth(method = "lm", se = F) +
-      annotate(geom = "text",
-               x = min(predictor, na.rm = T),
-               y = max(outcome, na.rm = T),
-               hjust = 0,
-               vjust = 1,
-               label = glue("r = {round(correlation,3)}")) +
-      labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
-           x = glue("Exposure {i}"),
-           y = glue("{deparse(substitute(outcome))}"))
+    if (r == F & line == F) {
+      corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
+        geom_point() +
+        labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
+             x = glue("Exposure {i}"),
+             y = glue("{deparse(substitute(outcome))}"))
 
-    plots[[glue("Exposure {i}")]] <- corr_plot
+      plots[[glue("Exposure {i}")]] <- corr_plot
+    }
+    else if (r == T & line == F) {
+      corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
+        geom_point() +
+        annotate(geom = "text",
+                 x = min(predictor, na.rm = T),
+                 y = max(outcome, na.rm = T),
+                 hjust = 0,
+                 vjust = 1,
+                 label = glue("r = {round(correlation,3)}")) +
+        labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
+             x = glue("Exposure {i}"),
+             y = glue("{deparse(substitute(outcome))}"))
+
+      plots[[glue("Exposure {i}")]] <- corr_plot
+    }
+    else if (r == F & line == T) {
+      corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
+        geom_point() +
+        geom_smooth(method = "lm", se = F) +
+        labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
+             x = glue("Exposure {i}"),
+             y = glue("{deparse(substitute(outcome))}"))
+
+      plots[[glue("Exposure {i}")]] <- corr_plot
+    }
+    else {
+      corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
+        geom_point() +
+        geom_smooth(method = "lm", se = F) +
+        annotate(geom = "text",
+                 x = min(predictor, na.rm = T),
+                 y = max(outcome, na.rm = T),
+                 hjust = 0,
+                 vjust = 1,
+                 label = glue("r = {round(correlation,3)}")) +
+        labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
+             x = glue("Exposure {i}"),
+             y = glue("{deparse(substitute(outcome))}"))
+
+      plots[[glue("Exposure {i}")]] <- corr_plot
+    }
+
   }
   return(plots)
 }
+
+
+
+
+
+
 
 
 
