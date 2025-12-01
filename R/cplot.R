@@ -89,7 +89,7 @@ cplot <- function(predictors, outcome, r = T, line = T) {
 #          y = max(outcome, na.rm = T),
 #          hjust = 0,
 #          vjust = 1,
-#          label = glue("r = {round(correlation,3)}")) +
+#          label = glue("r = {round(correlation,3)}"))
 
 
 
