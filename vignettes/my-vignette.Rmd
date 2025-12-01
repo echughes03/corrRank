@@ -72,7 +72,7 @@ cplot(exposures, cities$happiness_level)
 
 Individual scatterplots can be extracted for each predictor using the order that they are listed in. In the `cities` dataset, `cplot()` takes the list of predictors `exposures` which consists of (1) average hours worked annually, (2) pollution, and (3) annual hours of sunshine, embedded in that order. To extract individual scatterplots, we write:
 
-```{r}
+```{r, fig.width=8, fig.height=6}
 plots <- cplot(exposures, cities$happiness_level)
 
 # scatter plot: average hours worked annually vs. happiness level
