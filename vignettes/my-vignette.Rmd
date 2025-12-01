@@ -89,7 +89,7 @@ The function `cplot()` can also generate scatterplots that exclude the line of b
 
 ```{r}
 plot_list <- cplot(exposures, cities$happiness_level, line = F)
-plot_list$`Exposure 3` + labs(x = "Annual Hours of Sunshine",
+plot_list$`Exposure 3` + ggplot2::labs(x = "Annual Hours of Sunshine",
                               y = "Happiness Level",
                               title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
 ```
