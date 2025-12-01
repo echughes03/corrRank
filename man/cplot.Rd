@@ -23,4 +23,8 @@ plot_list <- cplot(exposures, cities$happiness_level)
 plot_list$`Exposure 1`
 plot_list$`Exposure 2`
 plot_list$`Exposure 3`
+
+# relabeling and excluding line of best fit
+plot_list <- cplot(exposures, cities$happiness_level, line = F)
+plot_list$`Exposure 3` + labs(x = "Annual Hours of Sunshine", y = "Happiness Level", title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
 }
