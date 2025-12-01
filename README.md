@@ -5,7 +5,7 @@ This r package contains two functions that assist in exploratory analysis of lin
 When working with a dataset containing many continuous variables, it can take time and effort to discern which variables are associated and how. The goal of this package is to speed up this process and allow for faster identification of the strongest associations in a dataset. 
 
 ## corrRank
-The _corrRank_ function computes pairs of linear Pearson correlations between a list of named predictors and a given outcome. The function outputs a ranked list of correlations from strongest (closest in absolute value to 1) to weakest (closest in absolute value to 0). Information on the strength of the association (ie. weak/moderate/strong and positive/negative) is also included.
+The _corrRank_ function computes pairs of linear correlations (Pearson r) between a list of named predictors and a given outcome. The function outputs a ranked list of correlations from strongest (closest in absolute value to 1) to weakest (closest in absolute value to 0). Information on the strength of the association (ie. weak/moderate/strong and positive/negative) and significance is also included.
 
 ### Example
 ```R
@@ -17,7 +17,7 @@ corrRank(list(Work = cities$avg_hours_worked_annual,
 Given a dataframe called _cities_, the code above will rank the predictors _Work_, _Pollution_ and _Sunshine_ by their correlation with the outcome happiness level. Predictors must be named and enclosed in a list, while the outcome can be directly indexed from the dataframe.
 
 ## cplot
-The _cplot_ function creates a clean, simple scatterplot of a given predictor-outcome relationship. The correlation value and fitted simple linear regression line can easily be added to the plot as well.
+The _cplot_ function creates a set of clean, simple scatterplots of given predictor-outcome relationships. The correlation value and fitted simple linear regression line can easily be added to the plots as well.
 
 ### Example
 ```R
