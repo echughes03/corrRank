@@ -1,0 +1,2 @@
+# **corrrank**
+This r package contains two functions that assist in exploratory analysis of linear associations. The function _corrrank_ ranks a list of predictor variables based on the absolute value of their correlation with a given outcome variable. The other function _cplot_ creates a scatterplot of a given predictor-outcome association. The functions are designed for use on numerical variables. 
