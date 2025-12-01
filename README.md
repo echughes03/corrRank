@@ -29,6 +29,10 @@ cplot(exposures, cities$happiness_level)
 ```R
 install.packages("devtools") 
 library(devtools)
-devtools::install_github("echughes03/corrRank")
+# To see the vignette, include the build_vignettes=TRUE argument:
+devtools::install_github("echughes03/corrRank", build_vignettes = TRUE)
 library(corrRank)
+
+# To view the vignette example, run:
+vignette("my-vignette", package = "corrRank")
 ```
