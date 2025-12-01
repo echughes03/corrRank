@@ -34,5 +34,5 @@ devtools::install_github("echughes03/corrRank", build_vignettes = TRUE)
 library(corrRank)
 
 # To view the vignette example, run:
-vignette("my-vignette", package = "corrRank")
+vignette("corrRank-vignette", package = "corrRank")
 ```
