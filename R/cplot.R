@@ -2,6 +2,8 @@
 #' @description a function that prints bivariate plots of outcome against exposure (from a list of predictors in the order specified). Bivariate plots are stored in a list that allows for individual plot extraction. The plots are output with a line of best fit and correlation coefficient included as default arguments. Both the line of best fit and correlation coefficient can be excluded when running the cplot() function. Scatterplots can be relabeled and modified according to ggplot2 plotting conventions.
 #' @param outcome numeric outcome variable, vector
 #' @param predictors list of numeric predictor(s), vectors
+#' @param r TRUE for adding correlation coefficient to plot (default) or FALSE to remove
+#' @param line TRUE for adding the fitted regression line to plot (default) or FALSE to remove
 #' @returns list of ggplot2 output(s). List can be indexed to output specific plot(s)
 #' @examples
 #' exposures <- list(Work = cities$avg_hours_worked_annual,
@@ -13,27 +15,29 @@
 #' plot_list$`Exposure 3`
 #'
 #' # relabeling and excluding line of best fit
-#' plot_list <- cplot(exposures, cities$happiness_level, line = F)
+#' plot_list <- cplot(exposures, cities$happiness_level, line = FALSE)
 #' plot_list$`Exposure 3` +
 #'   ggplot2::labs(x = "Annual Hours of Sunshine",
 #'                 y = "Happiness Level",
 #'                 title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
+#' @name imports
 #' @import dplyr
 #' @import ggplot2
 #' @import glue
+#' @importFrom stats cor
 #' @export
 
-cplot <- function(predictors, outcome, r = T, line = T) {
+cplot <- function(predictors, outcome, r = TRUE, line = TRUE) {
 
   plots <- list()
 
   for (i in seq_along(predictors)) {
     predictor <- predictors[[i]]
-    correlation <- cor(x = predictor, y = outcome, use = "complete.obs")
+    correlation <- stats::cor(x = predictor, y = outcome, use = "complete.obs")
 
     df <- data.frame(exposure = predictor, response = outcome)
 
-    if (r == F & line == F) {
+    if (r == FALSE & line == FALSE) {
       corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
         geom_point() +
         labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
@@ -43,7 +47,7 @@ cplot <- function(predictors, outcome, r = T, line = T) {
 
       plots[[glue("Exposure {i}")]] <- corr_plot
     }
-    else if (r == T & line == F) {
+    else if (r == TRUE & line == FALSE) {
       corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
         geom_point() +
         labs(subtitle = glue("r = {round(correlation,3)}")) +
@@ -54,10 +58,10 @@ cplot <- function(predictors, outcome, r = T, line = T) {
 
       plots[[glue("Exposure {i}")]] <- corr_plot
     }
-    else if (r == F & line == T) {
+    else if (r == FALSE & line == TRUE) {
       corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
         geom_point() +
-        geom_smooth(method = "lm", se = F) +
+        geom_smooth(method = "lm", se = FALSE) +
         labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
              x = glue("Exposure {i}"),
              y = glue("{deparse(substitute(outcome))}")) +
@@ -68,7 +72,7 @@ cplot <- function(predictors, outcome, r = T, line = T) {
     else {
       corr_plot <- ggplot2::ggplot(data = df, aes(x = exposure, y = response)) +
         geom_point() +
-        geom_smooth(method = "lm", se = F) +
+        geom_smooth(method = "lm", se = FALSE) +
         labs(subtitle = glue("r = {round(correlation,3)}")) +
         labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
              x = glue("Exposure {i}"),

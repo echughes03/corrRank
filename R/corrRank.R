@@ -10,6 +10,8 @@
 #'
 #' corrRank(list(Work = cities$avg_hours_worked_annual),
 #' cities$sunshine_hours)
+#' @importFrom stats cor
+#' @importFrom stats cor.test
 #' @export
 
 corrRank = function(predictors, outcome){
@@ -22,10 +24,10 @@ corrRank = function(predictors, outcome){
     stopifnot("Predictors and outcome must be equal length" = length(predictor)==length(outcome))
     stopifnot("Predictors must be numeric" = is.numeric(predictor))
 
-    correlation = round(cor(predictor, outcome, use = "complete.obs"),2)
+    correlation = round(stats::cor(predictor, outcome, use = "complete.obs"),2)
     ranking = rbind(ranking, data.frame(Predictor = names(predictors)[i],
                                         Correlation = correlation,
-                                        Significance = ifelse(cor.test(predictor, outcome)$p.value < 0.05, "Yes", "No"),
+                                        Significance = ifelse(stats::cor.test(predictor, outcome)$p.value < 0.05, "Yes", "No"),
                                         "Linear Association" = dplyr::case_when(correlation == -1 ~ "Perfect negative",
                                                                 correlation == 1 ~ "Perfect positive",
                                                                 correlation == 0 ~ "None",
