@@ -11,7 +11,7 @@ test_that("(2) cplot returns a list", {
 
 test_that("(3) cplot indexed outputs are ggplot objects", {
   exposures <- list(cities$life_expectancy, cities$happiness_level)
-  expect_equal(c("gg","ggplot"), class(cplot(exposures, cities$obesity_level)$`Exposure 1`))
+  expect_equal("ggplot2::ggplot", class(cplot(exposures, cities$obesity_level)$`Exposure 1`)[1])
 })
 
 test_that("(4) number of plots correspond to number of predictors listed", {

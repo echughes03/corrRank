@@ -2,9 +2,9 @@
 % Please edit documentation in R/cplot.R
 \name{cplot}
 \alias{cplot}
-\title{correlation plot}
+\title{correlation scatterplot}
 \usage{
-cplot(predictors, outcome)
+cplot(predictors, outcome, r = T, line = T)
 }
 \arguments{
 \item{predictors}{list of numeric predictor(s), vectors}
@@ -15,11 +15,12 @@ cplot(predictors, outcome)
 list of ggplot2 output(s). List can be indexed to output specific plot(s)
 }
 \description{
-a function that prints bivariate plots of outcome against exposure (from a list of predictors in the order specified)
+a function that prints bivariate plots of outcome against exposure (from a list of predictors in the order specified). Bivariate plots are stored in a list that allows for individual plot extraction. The plots are output with a line of best fit and correlation coefficient included as default arguments. Both the line of best fit and correlation coefficient can be excluded when running the cplot() function. Scatterplots can be relabeled and modified according to ggplot2 plotting conventions.
 }
 \examples{
-exposures <- list(cities$life_expectancy, cities$happiness_level)
-plot_list <- cplot(exposures, cities$obesity_level)
+exposures <- list(Work = cities$avg_hours_worked_annual, Pollution = cities$pollution_index, Sunshine = cities$sunshine_hours)
+plot_list <- cplot(exposures, cities$happiness_level)
 plot_list$`Exposure 1`
 plot_list$`Exposure 2`
+plot_list$`Exposure 3`
 }
