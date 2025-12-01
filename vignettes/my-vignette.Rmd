@@ -58,9 +58,9 @@ Inside `corrRank()`, make sure to specify a name for each predictor (ie. `Work =
 
 The `cplot` function takes two arguments: a list of predictor vectors and a single outcome variable, consistent with arguments for `corrRank()`. Similarly, all predictors and the outcome must be numeric.
 
-The function outputs a predictor-outcome scatter plot for each predictor vector in the list of predictors. The order of scatter plot output is determined by the order of predictor vectors listed. A line of best fit and pearson correlation coefficient accompanies the correlation plot.
+The function outputs a predictor-outcome scatterplot for each predictor vector in the list of predictors. The order of scatterplot output is determined by the order of predictor vectors listed. A line of best fit and pearson correlation coefficient accompanies the correlation plot.
 
-From the `cities` data set, we can visualize the correlation for a list of predictors: average hours worked annually (`avg_hours_worked_annual`), pollution (`pollution_index`) and number of hours of sunshine per year (`sunshine_hours`), against the outcome, 'happiness level'. Using `cplot()` we write:
+From the `cities` dataset, we can visualize the correlation for a list of predictors: average hours worked annually (`avg_hours_worked_annual`), pollution (`pollution_index`) and number of hours of sunshine per year (`sunshine_hours`), against the outcome, 'happiness level'. Using `cplot()` we write:
 
 ```{r}
 # "exposures" is an assigned list of predictors
@@ -70,7 +70,7 @@ cplot(exposures, cities$happiness_level)
 ```
 
 
-Individual scatter plots can be extracted for each predictor using the order that they are listed in. In the `cities` data set, `cplot()` takes the list of predictors `exposures` which consists of (1) average hours worked annually, (2) pollution, and (3) annual hours of sunshine, embedded in that order. To extract individual scatter plots, we write:
+Individual scatterplots can be extracted for each predictor using the order that they are listed in. In the `cities` dataset, `cplot()` takes the list of predictors `exposures` which consists of (1) average hours worked annually, (2) pollution, and (3) annual hours of sunshine, embedded in that order. To extract individual scatterplots, we write:
 
 ```{r}
 plots <- cplot(exposures, cities$happiness_level)
@@ -85,3 +85,4 @@ plots$`Exposure 2`
 plots$`Exposure 3`
 ```
 
+The function `cplot()` can also generate scatterplots that exclude the line of best fit and the correlation output by specifying `line = F` and `r = F` respectively. Futhermore, for naming conventions, the title and title axes can be modified according to `ggplot2` labelling conventions.
