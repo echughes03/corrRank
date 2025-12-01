@@ -18,7 +18,9 @@ list of ggplot2 output(s). List can be indexed to output specific plot(s)
 a function that prints bivariate plots of outcome against exposure (from a list of predictors in the order specified). Bivariate plots are stored in a list that allows for individual plot extraction. The plots are output with a line of best fit and correlation coefficient included as default arguments. Both the line of best fit and correlation coefficient can be excluded when running the cplot() function. Scatterplots can be relabeled and modified according to ggplot2 plotting conventions.
 }
 \examples{
-exposures <- list(Work = cities$avg_hours_worked_annual, Pollution = cities$pollution_index, Sunshine = cities$sunshine_hours)
+exposures <- list(Work = cities$avg_hours_worked_annual,
+                  Pollution = cities$pollution_index,
+                  Sunshine = cities$sunshine_hours)
 plot_list <- cplot(exposures, cities$happiness_level)
 plot_list$`Exposure 1`
 plot_list$`Exposure 2`
@@ -26,5 +28,8 @@ plot_list$`Exposure 3`
 
 # relabeling and excluding line of best fit
 plot_list <- cplot(exposures, cities$happiness_level, line = F)
-plot_list$`Exposure 3` + ggplot2::labs(x = "Annual Hours of Sunshine", y = "Happiness Level", title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
+plot_list$`Exposure 3` +
+  ggplot2::labs(x = "Annual Hours of Sunshine",
+                y = "Happiness Level",
+                title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
 }

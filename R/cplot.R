@@ -4,7 +4,9 @@
 #' @param predictors list of numeric predictor(s), vectors
 #' @returns list of ggplot2 output(s). List can be indexed to output specific plot(s)
 #' @examples
-#' exposures <- list(Work = cities$avg_hours_worked_annual, Pollution = cities$pollution_index, Sunshine = cities$sunshine_hours)
+#' exposures <- list(Work = cities$avg_hours_worked_annual,
+#'                   Pollution = cities$pollution_index,
+#'                   Sunshine = cities$sunshine_hours)
 #' plot_list <- cplot(exposures, cities$happiness_level)
 #' plot_list$`Exposure 1`
 #' plot_list$`Exposure 2`
@@ -12,7 +14,10 @@
 #'
 #' # relabeling and excluding line of best fit
 #' plot_list <- cplot(exposures, cities$happiness_level, line = F)
-#' plot_list$`Exposure 3` + ggplot2::labs(x = "Annual Hours of Sunshine", y = "Happiness Level", title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
+#' plot_list$`Exposure 3` +
+#'   ggplot2::labs(x = "Annual Hours of Sunshine",
+#'                 y = "Happiness Level",
+#'                 title = "Correlation Between Annual Hours of Sunshine and Happiness Level")
 #' @import dplyr
 #' @import ggplot2
 #' @import glue
