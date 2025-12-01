@@ -62,32 +62,31 @@ The function outputs a predictor-outcome scatterplot for each predictor vector i
 
 From the `cities` dataset, we can visualize the correlation for a list of predictors: average hours worked annually (`avg_hours_worked_annual`), pollution (`pollution_index`) and number of hours of sunshine per year (`sunshine_hours`), against the outcome, 'happiness level'. Using `cplot()` we write:
 
-```{r, fig.width=6, fig.height=4}
+```{r, fig.width=6, fig.height=4, warning = F}
 # "exposures" is an assigned list of predictors
 exposures <- list(Work = cities$avg_hours_worked_annual, Pollution = cities$pollution_index, Sunshine = cities$sunshine_hours)
 
 cplot(exposures, cities$happiness_level)
 ```
 
+### Extracting Individual Scatterplots
 
-Individual scatterplots can be extracted for each predictor using the order that they are listed in. In the `cities` dataset, `cplot()` takes the list of predictors `exposures` which consists of (1) average hours worked annually, (2) pollution, and (3) annual hours of sunshine, embedded in that order. To extract individual scatterplots, we write:
+Individual scatterplots can be extracted for each predictor using the order that they are listed in. In the `cities` dataset, `cplot()` takes the list of predictors `exposures` which consists of (1) average hours worked annually, (2) pollution, and (3) annual hours of sunshine, embedded in that order. To extract the individual scatterplot for annual hours of sunshine, the third listed predictor in `exposures`, against happiness level, we write:
 
-```{r, fig.width=6, fig.height=4}
+```{r, fig.width=6, fig.height=4, warning = F}
 plots <- cplot(exposures, cities$happiness_level)
-
-# scatter plot: average hours worked annually vs. happiness level
-plots$`Exposure 1`
-
-# scatter plot: pollution vs. happiness level
-plots$`Exposure 2`
 
 # scatterplot: annual hours of sunshine vs. happiness level
 plots$`Exposure 3`
 ```
 
-The function `cplot()` can also generate scatterplots that exclude the line of best fit and the correlation output by specifying *line = F* and *r = F* respectively. Furthermore, the title and title axes can be modified according to `ggplot2` labeling conventions. Following the `cities` examples, to extract a scatterplot for annual hours of sunshine against happiness level, relabel the plot, and exclude the line of best fit, we write:
+### Customizing Scatterplot Outputs
 
-```{r, fig.width=6, fig.height=4}
+The function `cplot()` can also generate scatterplots that exclude the line of best fit and the correlation output by specifying *line = F* and *r = F* respectively. 
+
+Furthermore, the title and title axes can be modified according to `ggplot2` labeling conventions. Following the `cities` examples, to extract a scatterplot for annual hours of sunshine against happiness level, relabel the plot, and exclude the line of best fit, we write:
+
+```{r, fig.width=7, fig.height=4, warning = F}
 plot_list <- cplot(exposures, cities$happiness_level, line = F)
 plot_list$`Exposure 3` + ggplot2::labs(x = "Annual Hours of Sunshine",
                               y = "Happiness Level",
