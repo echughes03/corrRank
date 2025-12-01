@@ -3,7 +3,7 @@ Type: Package
 Title: Ranks Linear Correlations Between Outcome and Predictors
 Version: 0.0.0.9000
 Authors@R: 
-    c(person(given = "Ever", family = "Hughes", role = "aut", email = "ever.hughes@yahoo.ca"), 
+    c(person(given = "Ever", family = "Hughes", role = c("aut", "cre"), email = "ever.hughes@yahoo.ca"), 
     person(given = "Lan", family = "Tang", role = "aut", email = "hoanglan.tang@outlook.com"))
 Description: Given a named list of continuous predictors (vectors) and a continuous outcome (vector), return a dataframe with the ranking of strongest to weakest correlation, correlation significance, and association interpretation.
 License: MIT + file LICENSE
