@@ -1,4 +1,4 @@
-# corrRank
+<img width="1277" height="95" alt="image" src="https://github.com/user-attachments/assets/22603dd0-c31a-4c22-be67-3a444ec791f4" /># corrRank
 This r package contains two functions that assist in exploratory analysis of linear associations. The function _corrRank_ ranks a list of predictor variables based on the absolute value of their correlation with a given outcome variable. The other function _cplot_ creates a scatterplot of a given predictor-outcome association. The functions are designed for use on numerical variables only.
 
 ## Rationale
@@ -21,7 +21,8 @@ The _cplot_ function creates a clean, simple scatterplot of a given predictor-ou
 
 ### Example
 ```R
-
+exposures <- list(Work = cities$avg_hours_worked_annual, Pollution = cities$pollution_index, Sunshine = cities$sunshine_hours)
+cplot(exposures, cities$happiness_level)
 ```
 
 ## R installation
