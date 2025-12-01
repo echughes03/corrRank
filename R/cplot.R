@@ -1,5 +1,5 @@
-#' @title correlation plot
-#' @description a function that prints bivariate plots of outcome against exposure (from a list of predictors in the order specified)
+#' @title correlation scatterplot
+#' @description a function that prints bivariate plots of outcome against exposure (from a list of predictors in the order specified). Bivariate plots are stored in a list that allows for individual plot extraction. The plots are output with a line of best fit and correlation coefficient included as default arguments. Both the line of best fit and correlation coefficient can be excluded when running the cplot() function. Scatterplots can be relabeled and modified according to ggplot2 plotting conventions.
 #' @param outcome numeric outcome variable, vector
 #' @param predictors list of numeric predictor(s), vectors
 #' @returns list of ggplot2 output(s). List can be indexed to output specific plot(s)
@@ -29,7 +29,8 @@ cplot <- function(predictors, outcome, r = T, line = T) {
         geom_point() +
         labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
              x = glue("Exposure {i}"),
-             y = glue("{deparse(substitute(outcome))}"))
+             y = glue("{deparse(substitute(outcome))}")) +
+        theme_minimal()
 
       plots[[glue("Exposure {i}")]] <- corr_plot
     }
@@ -44,7 +45,8 @@ cplot <- function(predictors, outcome, r = T, line = T) {
                  label = glue("r = {round(correlation,3)}")) +
         labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
              x = glue("Exposure {i}"),
-             y = glue("{deparse(substitute(outcome))}"))
+             y = glue("{deparse(substitute(outcome))}")) +
+        theme_minimal()
 
       plots[[glue("Exposure {i}")]] <- corr_plot
     }
@@ -54,7 +56,8 @@ cplot <- function(predictors, outcome, r = T, line = T) {
         geom_smooth(method = "lm", se = F) +
         labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
              x = glue("Exposure {i}"),
-             y = glue("{deparse(substitute(outcome))}"))
+             y = glue("{deparse(substitute(outcome))}")) +
+        theme_minimal()
 
       plots[[glue("Exposure {i}")]] <- corr_plot
     }
@@ -70,7 +73,8 @@ cplot <- function(predictors, outcome, r = T, line = T) {
                  label = glue("r = {round(correlation,3)}")) +
         labs(title = glue("Correlation Between {deparse(substitute(outcome))} and Exposure {i}"),
              x = glue("Exposure {i}"),
-             y = glue("{deparse(substitute(outcome))}"))
+             y = glue("{deparse(substitute(outcome))}")) +
+        theme_minimal()
 
       plots[[glue("Exposure {i}")]] <- corr_plot
     }
