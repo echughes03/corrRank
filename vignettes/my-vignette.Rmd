@@ -62,7 +62,7 @@ The function outputs a predictor-outcome scatterplot for each predictor vector i
 
 From the `cities` dataset, we can visualize the correlation for a list of predictors: average hours worked annually (`avg_hours_worked_annual`), pollution (`pollution_index`) and number of hours of sunshine per year (`sunshine_hours`), against the outcome, 'happiness level'. Using `cplot()` we write:
 
-```{r}
+```{r, fig.width=6, fig.height=4}
 # "exposures" is an assigned list of predictors
 exposures <- list(Work = cities$avg_hours_worked_annual, Pollution = cities$pollution_index, Sunshine = cities$sunshine_hours)
 
