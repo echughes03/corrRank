@@ -85,7 +85,7 @@ plots$`Exposure 2`
 plots$`Exposure 3`
 ```
 
-The function `cplot()` can also generate scatterplots that exclude the line of best fit and the correlation output by specifying `line = F` and `r = F` respectively. Furthermore, the title and title axes can be modified according to `ggplot2` labeling conventions. Following the `cities` examples, to extract a scatterplot for annual hours of sunshine against happiness level, relabel the plot, and exclude the line of best fit, we write:
+The function `cplot()` can also generate scatterplots that exclude the line of best fit and the correlation output by specifying *line = F* and *r = F* respectively. Furthermore, the title and title axes can be modified according to `ggplot2` labeling conventions. Following the `cities` examples, to extract a scatterplot for annual hours of sunshine against happiness level, relabel the plot, and exclude the line of best fit, we write:
 
 ```{r}
 plot_list <- cplot(exposures, cities$happiness_level, line = F)
