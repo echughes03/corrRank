@@ -5,7 +5,7 @@ This r package contains two functions that assist in exploratory analysis of lin
 When working with a dataset containing many continuous variables, it can take time and effort to discern which variables are associated and how. The goal of this package is to speed up this process and allow for faster identification of the strongest associations in a dataset. 
 
 ## corrRank
-The _corrRank_ function computes pairs of linear correlations (Pearson r) between a list of named predictors and a given outcome. The function outputs a ranked list of correlations from strongest (closest in absolute value to 1) to weakest (closest in absolute value to 0) in dataframe format. Information on the strength of the association (ie. weak/moderate/strong and positive/negative) and significance (p-value < 0.05 or not) is also included.
+The _corrRank_ function computes pairs of linear correlations (Pearson r) between a list of named predictors and a given outcome. The function outputs a ranked list of correlations from strongest (closest in absolute value to 1) to weakest (closest in absolute value to 0) in dataframe format. Information on the strength of the association (ie. weak/moderate/strong and positive/negative) and significance (p-value < 0.05 or not) is also included. Only observations with complete data (no missing values) are used in calculations.
 
 ### Example
 ```R
